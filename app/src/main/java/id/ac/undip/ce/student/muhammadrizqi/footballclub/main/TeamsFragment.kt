@@ -1,7 +1,6 @@
 package id.ac.undip.ce.student.muhammadrizqi.footballclub.main
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -12,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.google.gson.Gson
-import id.ac.undip.ce.student.muhammadrizqi.footballclub.api.ApiRespository
+import id.ac.undip.ce.student.muhammadrizqi.footballclub.api.ApiRepository
 import id.ac.undip.ce.student.muhammadrizqi.footballclub.R.array.league
 import id.ac.undip.ce.student.muhammadrizqi.footballclub.R.color.colorAccent
 import id.ac.undip.ce.student.muhammadrizqi.footballclub.model.Team
@@ -41,10 +40,12 @@ class TeamsFragment : Fragment(), AnkoComponent<Context>, TeamsView {
         val spinnerAdapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
         spinner.adapter = spinnerAdapter
 
-        adapter = TeamsAdapter(teams)
+        adapter = TeamsAdapter(teams){
+            ctx.startActivity<TeamDetailActivity>("id" to "${it.teamId}")
+        }
         listTeam.adapter = adapter
 
-        val request = ApiRespository()
+        val request = ApiRepository()
         val gson = Gson()
         presenter = TeamsPresenter(this, request, gson)
 
