@@ -12,7 +12,7 @@ import id.ac.undip.ce.student.muhammadrizqi.footballclub.R.id.team_name
 import id.ac.undip.ce.student.muhammadrizqi.footballclub.model.Team
 import org.jetbrains.anko.*
 
-class MainAdapter (private val teams: List<Team>)
+class TeamsAdapter (private val teams: List<Team>)
     : RecyclerView.Adapter<TeamViewHolder>(){
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
         holder.bindItem(teams[position])

@@ -7,8 +7,8 @@ import id.ac.undip.ce.student.muhammadrizqi.footballclub.api.TheSportDBApi
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainPresenter(
-        private val view: MainView,
+class TeamsPresenter(
+        private val view: TeamsView,
         private val apiRespository: ApiRespository,
         private val gson: Gson
 ) {
