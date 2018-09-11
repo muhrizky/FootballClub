@@ -6,6 +6,8 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -13,9 +15,12 @@ import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import id.ac.undip.ce.student.muhammadrizqi.footballclub.R.color.colorAccent
+import id.ac.undip.ce.student.muhammadrizqi.footballclub.R.id.add_to_favorite
+import id.ac.undip.ce.student.muhammadrizqi.footballclub.R.menu.detail_menu
 import id.ac.undip.ce.student.muhammadrizqi.footballclub.model.Team
 import org.jetbrains.anko.*
 import id.ac.undip.ce.student.muhammadrizqi.footballclub.api.ApiRepository
+import id.ac.undip.ce.student.muhammadrizqi.footballclub.database
 import id.ac.undip.ce.student.muhammadrizqi.footballclub.util.invisible
 import id.ac.undip.ce.student.muhammadrizqi.footballclub.util.visible
 import org.jetbrains.anko.support.v4.onRefresh
@@ -52,6 +57,29 @@ class TeamDetailActivity : AppCompatActivity(), TeamDetailView {
     private lateinit var presenter: TeamDetailPresenter
     private lateinit var teams: Team
     private lateinit var id: String
+    private var menuItem: Menu? = null
+    private var isFavorite: Boolean=false
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(detail_menu, menu)
+        menuItem = menu
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            add_to_favorite -> {
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
